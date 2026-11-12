@@ -1,0 +1,20 @@
+@startuml sequence
+title Диаграмма последовательности обмена датаграммами (вариант 18)
+
+actor "Клиент 1" as C1
+actor "Клиент 2" as C2
+participant "Сервер UDP\n127.0.0.1:20071" as S
+
+C1 -> S : RECTANGLE requestId=1 a=2 b=3
+S --> C1 : OK requestId=1 area=6.000000 perimeter=10.000000
+C2 -> S : TRIANGLE requestId=2 a=1 b=2 c=10
+S --> C2 : ERROR requestId=2 code=IMPOSSIBLE_TRIANGLE
+C1 -> S : CIRCLE requestId=3 r=-1
+S --> C1 : ERROR requestId=3 code=BAD_DIMENSIONS
+C2 -> S : FOO requestId=4
+S --> C2 : ERROR requestId=4 code=UNKNOWN_COMMAND
+C1 -> C1 : запрос на закрытый порт:\nответ не приходит, SO_RCVTIMEO
+C1 -> S : RECTANGLE requestId=5 a=4 b=5
+S --> C1 : OK requestId=5 area=20.000000 perimeter=18.000000
+
+@enduml

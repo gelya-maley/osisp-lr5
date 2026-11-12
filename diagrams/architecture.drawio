@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" modified="2026-11-21T00:00:00.000Z" agent="lab05g" version="24.0.0">
+  <diagram id="arch" name="architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cli" value="client.exe 1..3&#10;--host --port --id&#10;--requests --timeout" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="60" width="200" height="70" as="geometry" /></mxCell>
+        <mxCell id="recv" value="Приём датаграмм&#10;recvfrom, select,&#10;SO_RCVTIMEO" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="320" y="60" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="parse" value="Разбор запроса&#10;requestId, kind,&#10;проверка полей" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="610" y="60" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="calc" value="Вычисление и проверки&#10;RECTANGLE, CIRCLE,&#10;TRIANGLE, неравенства" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="610" y="170" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="resp" value="Формирование ответа&#10;OK с результатом или&#10;ERROR с кодом" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="320" y="170" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="send" value="Отправка датаграммы&#10;sendto, контроль&#10;WSAGetLastError" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="320" y="280" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="log" value="Журнал событий&#10;время, роль, peer,&#10;requestId, результат" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="40" y="280" width="200" height="70" as="geometry" /></mxCell>
+        <mxCell id="sock" value="UDP-сокет сервера&#10;bind 127.0.0.1:20071,&#10;датаграмма &lt;= 1200 Б" style="rounded=0;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor=#000000;" vertex="1" parent="1"><mxGeometry x="610" y="280" width="210" height="70" as="geometry" /></mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="cli" target="recv"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="recv" target="parse"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="parse" target="calc"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="calc" target="resp"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="resp" target="send"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="send" target="log"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="send" target="sock"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
